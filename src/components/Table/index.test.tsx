@@ -2,12 +2,30 @@ import { render, screen } from '@testing-library/react'
 import Table from './index'
 
 describe('Table', () => {
-    render(
-        <Table />
-    )
+    const mockData = [
+        {
+            tech: 'React',
+            type: 'Frontend'
+        },
+        {
+            tech: 'Angular',
+            type: 'Frontend'
+        },
+        {
+            tech: 'Node',
+            type: 'Backend'
+        },
+    ]    
 
     it('Deve exibir os itens na tabela', () => {
-        expect(screen.getByText('React')).toBeInTheDocument();
-        expect(screen.getByText('Frontend')).toBeInTheDocument();
+        render(<Table data={mockData} />)
+
+        expect(screen.getAllByRole('row')).toHaveLength(1 + mockData.length)
+    })
+
+    it('Deve renderizar a tabela caso não exista dados', () => {
+        render(<Table />)
+
+        expect(screen.getAllByRole('row')).toHaveLength(1)
     })
 })

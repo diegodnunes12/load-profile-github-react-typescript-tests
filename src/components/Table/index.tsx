@@ -1,6 +1,7 @@
 import React from 'react'
+import { ITable, ITech } from './type';
 
-const Table = () => {
+const Table = ({data}: ITable) => {
   return (
     <table className="table table-striped">
         <thead>
@@ -10,10 +11,16 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>          
-          <tr>
-            <td>React</td>
-            <td>Frontend</td>
-          </tr>
+          {
+            data !== undefined && data.map((arr, index) => {
+              return (
+                <tr key={index}> 
+                  <td>{arr.tech}</td>
+                  <td>{arr.type}</td>
+                </tr>
+              )
+            })            
+          }
         </tbody>
     </table>
   )
