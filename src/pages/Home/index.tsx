@@ -13,7 +13,7 @@ const Home = () => {
       return alert('Por favor, preencha o usuário')
     }
     
-    navigate('/perfil')
+    navigate(`/${user}`)
   }
 
   return (

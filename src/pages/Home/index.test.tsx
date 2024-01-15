@@ -11,6 +11,8 @@ jest.mock('react-router-dom', () => ({
 
 describe('Home', () => {
     it('Deve informar o usuário e ser redirecionado para perfil', () => {
+        const user = 'diego'
+
         render(
             <BrowserRouter>
                 <Home />
@@ -20,9 +22,9 @@ describe('Home', () => {
         const input = screen.getByRole('textbox', {name: 'User'})
         const button = screen.getByRole('button', {name: 'Enter'})
 
-        fireEvent.change(input, {target: {value: 'usuario'}})
+        fireEvent.change(input, {target: {value: user}})
         fireEvent.click(button)
-        expect(mockNavigate).toHaveBeenCalled()
+        expect(mockNavigate).toHaveBeenCalledWith(`/${user}`)
     })
 
     it('Não deve redirecionar caso o usuário não seja preenchido', () => {

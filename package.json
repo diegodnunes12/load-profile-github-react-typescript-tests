@@ -10,6 +10,7 @@
     "@types/node": "^16.18.70",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
+    "axios": "^1.6.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",
@@ -29,6 +30,11 @@
       "react-app/jest"
     ]
   },
+  "jest": { 
+    "transformIgnorePatterns": [ 
+      "node_modules/(?!axios)" 
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -42,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/react-router-dom": "^5.3.3"
   }
 }
