@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import Home from './index'
+import gitApi from '../../api/github'
 
 const mockNavigate = jest.fn()
 
@@ -10,7 +11,8 @@ jest.mock('react-router-dom', () => ({
 }))
 
 describe('Home', () => {
-    it('Deve informar o usuário e ser redirecionado para perfil', () => {
+    it('Deve informar o usuário e ser redirecionado para perfil', async () => {
+        gitApi.getUser = jest.fn().mockResolvedValue({login: 'diegodnunes12'})
         const user = 'diego'
 
         render(
@@ -24,7 +26,7 @@ describe('Home', () => {
 
         fireEvent.change(input, {target: {value: user}})
         fireEvent.click(button)
-        expect(mockNavigate).toHaveBeenCalledWith(`/${user}`)
+        expect(gitApi.getUser).toHaveBeenCalledWith(user)
     })
 
     it('Não deve redirecionar caso o usuário não seja preenchido', () => {

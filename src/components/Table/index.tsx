@@ -1,13 +1,12 @@
 import React from 'react'
-import { ITable, ITech } from './type';
+import { ITable } from './type';
 
 const Table = ({data}: ITable) => {
   return (
     <table className="table table-striped">
         <thead>
           <tr>
-            <th scope="col">Tech</th>
-            <th scope="col">Type</th>
+            <th scope="col">Name</th>
           </tr>
         </thead>
         <tbody>          
@@ -15,8 +14,7 @@ const Table = ({data}: ITable) => {
             data !== undefined && data.map((arr, index) => {
               return (
                 <tr key={index}> 
-                  <td>{arr.tech}</td>
-                  <td>{arr.type}</td>
+                  <td>{arr.name}</td>
                 </tr>
               )
             })            

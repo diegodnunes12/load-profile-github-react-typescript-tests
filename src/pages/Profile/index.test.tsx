@@ -1,7 +1,6 @@
-import { render, screen } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
+import { render, screen } from "@testing-library/react"
+import { BrowserRouter } from "react-router-dom"
 import Perfil from './index'
-
 
 const mockNavigate = jest.fn()
 let mockUser: string = ''
@@ -21,14 +20,15 @@ describe('Perfil', () => {
         </BrowserRouter>
     )
 
-    it('Deve renderizar a tabela na página caso o usuário for válido', () => {
-        mockUser = 'diego'
+    it('Deve mostrar o conteúdo da página caso o usuário seja válido', () => {
+        mockUser = 'diegodnunes12'
+
         expect(screen.getByRole('table')).toBeInTheDocument()
-        expect(mockNavigate).not.toHaveBeenCalled()
     })
 
-    /* it('Deve renderizar para home caso o usuário não seja válido', () => {
-        mockUser = 'luke'
-        expect(mockNavigate).toHaveBeenCalled()
-    }) */
+    it('Não deve mostrar o conteúdo da página caso o usuário seja inválido', () => {
+        mockUser = 'diegodnunes123'
+
+        expect(screen.queryByRole('table')).not.toBeInTheDocument()
+    })
 })

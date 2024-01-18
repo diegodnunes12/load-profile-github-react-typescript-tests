@@ -4,16 +4,13 @@ import Table from './index'
 describe('Table', () => {
     const mockData = [
         {
-            tech: 'React',
-            type: 'Frontend'
+            name: 'React',
         },
         {
-            tech: 'Angular',
-            type: 'Frontend'
+            name: 'Angular',
         },
         {
-            tech: 'Node',
-            type: 'Backend'
+            name: 'Node',
         },
     ]    
 

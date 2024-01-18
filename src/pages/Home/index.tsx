@@ -1,10 +1,12 @@
 import React, { MouseEvent, useState } from 'react'
 import Layout from '../../components/Layout';
 import { useNavigate } from 'react-router-dom';
+import gitApi from '../../api/github';
 
 const Home = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState('');
+  const [invalid, setInvalid] = useState(false);
 
   const handleClick = async (event: MouseEvent) => {
     event.preventDefault();
@@ -12,8 +14,8 @@ const Home = () => {
     if(user.length === 0) {
       return alert('Por favor, preencha o usuário')
     }
-    
-    navigate(`/${user}`)
+
+    gitApi.getUser(user).then(response => navigate(`/${response.login}`)).catch(error => setInvalid(true))
   }
 
   return (
@@ -32,6 +34,9 @@ const Home = () => {
             onChange={event => setUser(event.target.value)}
           />
           <div id="userHelp" className="form-text">type your Github user</div>
+          {
+            invalid && (<div id="error" className="form-text text-danger">Invalid user!</div>)
+          }
       </div>
         <button onClick={handleClick} className='btn btn-dark'>Enter</button>
       </div>

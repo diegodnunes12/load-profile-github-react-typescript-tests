@@ -4,6 +4,11 @@ const gitApi = {
     getUser: async (user: string) => {
         const response = await axios.get(`https://api.github.com/users/${user}`)
         return response.data
+    },
+
+    getRepos: async (user: string) => {
+        const response = await axios.get(`https://api.github.com/users/${user}/repos`)
+        return response.data
     }
 }
 

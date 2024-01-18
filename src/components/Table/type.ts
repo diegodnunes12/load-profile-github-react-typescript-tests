@@ -1,8 +1,7 @@
-export interface ITech {
-   tech: string; 
-   type: string; 
+export interface IRepo {
+   name?: string; 
 }
 
 export interface ITable {
-    data?: ITech[]
+    data?: IRepo[]
  }
